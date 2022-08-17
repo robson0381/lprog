@@ -1,6 +1,6 @@
-using System;
+ using System;
 
-class Program {
+class Aula1 {
   public static double f(double x,
                         double a,
                         double b,
@@ -40,6 +40,12 @@ class Program {
   
   
     Console.WriteLine(m[0,1]);
+
+    foreach(int i in m){
+      Console.WriteLine(i);
+    
+    }
+    
     
   }
 }
