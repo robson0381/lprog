@@ -28,7 +28,7 @@ modelos:
       Ação Imediata: >-
         Reforçada a necessidade de inspeção prévia dos EPIs e da ancoragem antes do
         início da atividade.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "Trabalho em Altura"   # AJUSTE para o texto exato da opção
+      A interação foi feita baseada em algum dos Grandes Riscos?: "QUEDA DE ALTURA"
 
   - nome: energias-perigosas
     campos:
@@ -38,7 +38,7 @@ modelos:
       Ação Imediata: >-
         Orientado o teste de ausência de tensão e a conferência dos cadeados
         pessoais antes da intervenção.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "Energias Perigosas"  # AJUSTE
+      A interação foi feita baseada em algum dos Grandes Riscos?: "ELETRICIDADE"
 
   - nome: rotina-sem-grande-risco
     campos:
@@ -48,4 +48,4 @@ modelos:
       Ação Imediata: >-
         Parabenizada a equipe pelas boas práticas observadas e reforçada a
         importância de relatar desvios.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "Não"                 # AJUSTE
+      A interação foi feita baseada em algum dos Grandes Riscos?: "NENHUM ITEM ESPECÍFICO"

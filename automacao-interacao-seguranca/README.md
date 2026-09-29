@@ -4,8 +4,10 @@ Preenche periodicamente o app **Registro de Interação** (`ZGEEHS_REG_ABRD`) co
 **Descrição**, **Ação Imediata** e **"A interação foi feita baseada em algum dos
 Grandes Riscos?"** a partir de modelos definidos em `modelos.yaml`, e clica em **Gravar**.
 
-Os demais campos (Tipo, Unidade, Área, Responsável etc.) continuam com os valores
-que o app já traz. Se quiser forçar algum deles, use `campos_fixos` no `modelos.yaml`.
+O app só preenche sozinho o **Responsável Principal** e o **Método Coach** ("Não").
+Os demais campos obrigatórios (Tipo, Data, Unidade, Empresa, Área, Local da Instalação,
+Houve Desvio, Evento, Houve Violação, Instante) vêm vazios e precisam estar em
+`campos_fixos` (ou no modelo) no `modelos.yaml`; senão o SAP recusa a gravação.
 
 > O SAP fica na rede interna da ArcelorMittal, então o script deve rodar **no seu
 > computador de trabalho** (Windows), conectado à rede/VPN.

@@ -27,7 +27,9 @@ URL_PADRAO = (
     "https://sapfiori.arcelormittal.com.br/sap/bc/ui5_ui5/ui2/ushell/shells/abap/"
     "Fiorilaunchpad.html?appState=lean#ZGEEHS_REG_ABRD-display"
 )
-ROTULO_ESPERA = "Descrição"  # campo usado para saber que o app terminou de carregar
+# O app só está pronto quando este combo recebeu as opções do SAP (chegam alguns
+# segundos depois de o formulário aparecer).
+ROTULO_ESPERA = "A interação foi feita baseada em algum dos Grandes Riscos"
 
 # Funções executadas dentro da página. Localizam o controle UI5 a partir do texto do
 # rótulo (ignorando acentos, "*", ":" e "?") e leem/gravam seu valor.
@@ -126,7 +128,11 @@ window.__autoInteracao = (() => {
     return r;
   }).filter(Boolean);
 
-  const pronto = rotulo => !!(window.sap && sap.ui && sap.ui.getCore && controlePorRotulo(rotulo));
+  const pronto = rotulo => {
+    if (!(window.sap && sap.ui && sap.ui.getCore)) return false;
+    const c = controlePorRotulo(rotulo);
+    return !!c && (typeof c.getItems !== 'function' || c.getItems().some(it => textoItem(it)));
+  };
 
   return {definir, listar, pronto};
 })();
