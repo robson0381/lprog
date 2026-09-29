@@ -9,15 +9,21 @@
 # Como escolher o modelo em cada execução: rotativo (um após o outro) ou aleatorio
 selecao: rotativo
 
-# Campos aplicados em TODOS os envios (opcional). Descomente para forçar valores
-# que hoje o app já traz preenchidos por padrão.
+# Campos aplicados em TODOS os envios. O app só traz o Responsável preenchido;
+# os demais campos obrigatórios precisam estar aqui (ou no modelo).
 campos_fixos:
-  # Tipo de Interação: Interação de Segurança - Empregado
-  # Método Coach? (Interação Comportamental): Não
-  # Evento: ROTINA
-  # Houve Desvio?: Não
-  # Houve Violação?: Não Houve Violação
-  # A Interação foi realizada em qual instante?: Nenhum instante específico
+  # A ordem importa: Área e Local da Instalação só liberam depois de Unidade e Empresa.
+  Tipo de Interação: Interação de Segurança - Empregado
+  Método Coach? (Interação Comportamental): Não
+  Data: "{hoje}"
+  A Interação foi realizada em qual unidade?: AMT-ArcelorMittal Tubarão
+  Empresa: ARCELORMITTAL TUBARAO
+  Área: ICEP - ICEP - GER AREA PROD DISTRIB ENERGIA ( 66013632 )
+  Local da Instalação: Utilidades (AMT15)
+  Houve Desvio?: Não
+  Evento: ROTINA
+  Houve Violação?: Não Houve Violação
+  A Interação foi realizada em qual instante?: Nenhum instante específico
 
 modelos:
   - nome: trabalho-em-altura
