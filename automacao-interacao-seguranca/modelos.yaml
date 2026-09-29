@@ -1,0 +1,51 @@
+# Modelos de preenchimento do "Registro de Interação" (SAP Fiori).
+#
+# As chaves de "campos" são os RÓTULOS exatos dos campos na tela (sem "*" e ":").
+# Para combos, o valor deve ser o texto de uma das opções; rode
+#   python preencher_interacao.py --listar-opcoes
+# para ver as opções existentes (ex.: a lista de "Grandes Riscos").
+# O marcador {hoje} é trocado pela data atual (dd/mm/aaaa).
+
+# Como escolher o modelo em cada execução: rotativo (um após o outro) ou aleatorio
+selecao: rotativo
+
+# Campos aplicados em TODOS os envios (opcional). Descomente para forçar valores
+# que hoje o app já traz preenchidos por padrão.
+campos_fixos:
+  # Tipo de Interação: Interação de Segurança - Empregado
+  # Método Coach? (Interação Comportamental): Não
+  # Evento: ROTINA
+  # Houve Desvio?: Não
+  # Houve Violação?: Não Houve Violação
+  # A Interação foi realizada em qual instante?: Nenhum instante específico
+
+modelos:
+  - nome: trabalho-em-altura
+    campos:
+      Descrição: >-
+        Realizada interação com a equipe sobre trabalho em altura, verificando o uso
+        correto do cinto de segurança tipo paraquedas, ancoragem e condições do andaime.
+      Ação Imediata: >-
+        Reforçada a necessidade de inspeção prévia dos EPIs e da ancoragem antes do
+        início da atividade.
+      A interação foi feita baseada em algum dos Grandes Riscos?: "Trabalho em Altura"   # AJUSTE para o texto exato da opção
+
+  - nome: energias-perigosas
+    campos:
+      Descrição: >-
+        Interação sobre bloqueio e etiquetagem de energias perigosas durante
+        intervenção em painel elétrico.
+      Ação Imediata: >-
+        Orientado o teste de ausência de tensão e a conferência dos cadeados
+        pessoais antes da intervenção.
+      A interação foi feita baseada em algum dos Grandes Riscos?: "Energias Perigosas"  # AJUSTE
+
+  - nome: rotina-sem-grande-risco
+    campos:
+      Descrição: >-
+        Interação comportamental de rotina na área, observando organização, limpeza
+        e uso de EPIs básicos.
+      Ação Imediata: >-
+        Parabenizada a equipe pelas boas práticas observadas e reforçada a
+        importância de relatar desvios.
+      A interação foi feita baseada em algum dos Grandes Riscos?: "Não"                 # AJUSTE
