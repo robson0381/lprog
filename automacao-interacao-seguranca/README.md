@@ -84,6 +84,29 @@ A tarefa precisa rodar **com o usuário logado** (padrão do `schtasks` acima), 
 Se a sessão SSO expirar, a execução falha com a mensagem
 "O formulário não carregou..." e um print em `logs/`; basta rodar `--login` de novo.
 
+## Rodando fora da rede da empresa (Claude Code na nuvem)
+
+O portal `sapfiori.arcelormittal.com.br` também abre pela internet, com login de
+usuário e senha do SAP. Com as variáveis de ambiente abaixo, o script faz o login sozinho
+(sem o `--login` manual):
+
+| Variável | Conteúdo |
+|---|---|
+| `SAP_USUARIO` | seu usuário SAP |
+| `SAP_SENHA` | sua senha SAP |
+
+Nunca coloque a senha em arquivos do repositório nem cole no chat; cadastre-a nas
+variáveis do ambiente da nuvem. Em uma sessão nova:
+
+```bash
+automacao-interacao-seguranca/configurar_nuvem.sh
+python automacao-interacao-seguranca/preencher_interacao.py --headless --listar-opcoes
+python automacao-interacao-seguranca/preencher_interacao.py --headless --gravar
+```
+
+Como o `estado.json` não sobrevive entre sessões da nuvem, lá prefira `selecao: aleatorio`
+ou `--modelo NOME`.
+
 ## Observações
 
 - Confira as regras internas de SSMA sobre o registro de interações: a automação

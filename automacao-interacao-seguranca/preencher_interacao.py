@@ -14,6 +14,7 @@ Uso rápido:
 import argparse
 import datetime as dt
 import json
+import os
 import random
 import sys
 from pathlib import Path
@@ -184,6 +185,31 @@ def montar_campos(cfg, modelo, data):
     return campos
 
 
+def login_automatico(page):
+    """Preenche a tela de login do SAP com SAP_USUARIO/SAP_SENHA, se definidas."""
+    usuario, senha = os.environ.get("SAP_USUARIO"), os.environ.get("SAP_SENHA")
+    if not (usuario and senha):
+        return
+    campo_usuario = page.locator("input[name='sap-user']:visible")
+    try:
+        campo_usuario.wait_for(timeout=20000)
+    except PlaywrightTimeout:
+        return  # sessão já ativa: a tela de login não apareceu
+    log("Tela de login do SAP detectada; entrando com SAP_USUARIO.")
+    aviso_cookies = page.locator("#zMsgCookieLGPDBtnId:visible")
+    if aviso_cookies.count():
+        aviso_cookies.click()
+    campo_usuario.fill(usuario)
+    page.locator("input[name='sap-password']:visible").fill(senha)
+    page.locator("#LOGIN_LINK, #LOGIN_SUBMIT_BLOCK").first.click()
+    try:
+        campo_usuario.wait_for(state="detached", timeout=30000)
+    except PlaywrightTimeout:
+        texto = page.locator("body").inner_text()
+        linhas = [l for l in texto.splitlines() if "senha" in l.lower() or "usu" in l.lower()]
+        sys.exit("Login recusado pelo SAP. " + " | ".join(linhas[:3]))
+
+
 def esperar_app(page, timeout_s):
     page.add_init_script(JS_UTIL)
     page.evaluate(JS_UTIL)  # caso a página já esteja carregada
@@ -258,6 +284,7 @@ def main():
         )
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
         page.goto(args.url)
+        login_automatico(page)
 
         if args.login:
             log("Faça o login no navegador. Quando o formulário aparecer, a sessão será salva.")
