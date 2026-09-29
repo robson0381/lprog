@@ -108,6 +108,16 @@ window.__autoInteracao = (() => {
       return {ok: true, tipo, valor: textoItem(it)};
     }
 
+    if (c.isA('sap.m.DatePicker')) {
+      // O app lê a data de dateValue; só o texto (setValue) não chega ao modelo.
+      const m = String(valor).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (!m) return {ok: false, tipo, erro: `data inválida (use dd/mm/aaaa): "${valor}"`};
+      const data = new Date(+m[3], +m[2] - 1, +m[1]);
+      c.setDateValue(data);
+      c.fireChange({value: c.getValue(), newValue: c.getValue(), valid: true});
+      return {ok: true, tipo, valor: c.getValue()};
+    }
+
     if (typeof c.setValue === 'function') {
       c.setValue(String(valor));
       if (c.fireLiveChange) c.fireLiveChange({value: String(valor)});
@@ -225,7 +235,16 @@ def gravar(page, pasta_logs, carimbo):
     try:
         page.wait_for_selector(seletor, timeout=30000)
         page.wait_for_timeout(500)
-        mensagem = page.locator(seletor).first.inner_text().strip()
+        dialogo = page.locator(seletor).first
+        mensagem = dialogo.inner_text().strip()
+        # O app pede "Deseja registrar interação?" antes de gravar: confirma com OK.
+        if "deseja registrar" in mensagem.lower():
+            log("Confirmação do SAP respondida com OK.")
+            dialogo.get_by_role("button", name="OK", exact=True).click()
+            dialogo.wait_for(state="detached", timeout=10000)
+            page.wait_for_selector(seletor, timeout=30000)
+            page.wait_for_timeout(500)
+            mensagem = page.locator(seletor).first.inner_text().strip()
         erro = page.locator(".sapMMessageBoxError, .sapMDialogError").count() > 0
     except PlaywrightTimeout:
         pass

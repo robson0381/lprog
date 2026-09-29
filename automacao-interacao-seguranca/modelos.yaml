@@ -26,32 +26,32 @@ campos_fixos:
   A Interação foi realizada em qual instante?: Nenhum instante específico
 
 modelos:
-  - nome: trabalho-em-altura
+  - nome: orientacao-padrao
     campos:
       Descrição: >-
-        Realizada interação com a equipe sobre trabalho em altura, verificando o uso
-        correto do cinto de segurança tipo paraquedas, ancoragem e condições do andaime.
+        Realizada interação com a equipe orientando sobre a importância de seguir os
+        padrões e procedimentos de segurança na execução das atividades.
       Ação Imediata: >-
-        Reforçada a necessidade de inspeção prévia dos EPIs e da ancoragem antes do
-        início da atividade.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "QUEDA DE ALTURA"
+        Reforçada a orientação para cumprimento dos padrões operacionais e de segurança
+        e para relatar qualquer desvio identificado.
+      A interação foi feita baseada em algum dos Grandes Riscos?: NENHUM ITEM ESPECÍFICO
 
-  - nome: energias-perigosas
+  - nome: uso-de-epis
     campos:
       Descrição: >-
-        Interação sobre bloqueio e etiquetagem de energias perigosas durante
-        intervenção em painel elétrico.
+        Realizada interação com a equipe sobre o uso correto e a conservação dos EPIs
+        necessários para as atividades da área.
       Ação Imediata: >-
-        Orientado o teste de ausência de tensão e a conferência dos cadeados
-        pessoais antes da intervenção.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "ELETRICIDADE"
+        Orientada a verificação das condições dos EPIs antes do início das atividades e
+        a substituição imediata dos que estiverem danificados.
+      A interação foi feita baseada em algum dos Grandes Riscos?: NENHUM ITEM ESPECÍFICO
 
-  - nome: rotina-sem-grande-risco
+  - nome: organizacao-e-limpeza
     campos:
       Descrição: >-
-        Interação comportamental de rotina na área, observando organização, limpeza
-        e uso de EPIs básicos.
+        Interação comportamental de rotina na área, observando organização, limpeza e
+        condições gerais do local de trabalho.
       Ação Imediata: >-
-        Parabenizada a equipe pelas boas práticas observadas e reforçada a
-        importância de relatar desvios.
-      A interação foi feita baseada em algum dos Grandes Riscos?: "NENHUM ITEM ESPECÍFICO"
+        Parabenizada a equipe pelas boas práticas observadas e reforçada a importância
+        de manter a área organizada e de relatar desvios.
+      A interação foi feita baseada em algum dos Grandes Riscos?: NENHUM ITEM ESPECÍFICO
